@@ -1,0 +1,190 @@
+DOCKER ENVIRONMENT: 1] Docker Engine (Docker CLI(Command Line interface, request goes to Daemon through API), Dockcer API(it helps to interacts), Docker Daemon(it processes the result)  = It runs all process, it creats all objects 
+		    2] Docker objects = Docker images, Docker volumes, Docker Networks, Docker swarn Nodes and service(it is a blue print to create a container)
+					Docker images(info is present to create container)= creates container and execute the codes in it
+					Docker volumes=If you stop container all infrmation will be gone, so to store the data of container and can be used in other container
+							one volume can container to many containers one by one
+					Docker Networks =  can connect to other containers by networking
+                    3] Docker Registry = storage location( where images are stored)
+                    4] Docker Compose  = HELP TO RUN MUTIPLE CONTAINERS
+                    5] Docker Swarm    = It is a server to run multiple contaner in multiple servers
+DOCKER ARCHITECTURE = 1] DOCKER CLI
+                      2] DOCKER HOST
+                      3] DOCKER REGISTRY
+DOCKER STORAGE =  TO STORE DATA PERMENANTELY EASY FOR DATA TRANSFER
+dockerfile   =  TO CREATE IMAGE, WRITE SCRIPTS IN DOCKER FILE AND BUILD INSIDE IMAGE BY DOCKER BUILD AND MAKE IMAGE IN CONTAINER  
+                FROM <BASE IMAGE > EX=UBUNTU
+		ADD <SOURCE DIRECTORT(local directory or url)><DESTINATION DIRECTORY>
+		COPY<SOURCE DIRECTORY(CANT PUT URL)><DESTINATION DORECTORY>
+		RUN<COMMAND>  					  (TO RUN THE COMMAND)
+		WORKDIR<DIRECTORY> 				  (IT TELLS WHICH WORKING DIRECTORY YOU WILL ENTER WHEN YOU START WORKING EX=-APP )
+		CMD<COMMAND>  					  (IT TELL CONTAINER WHICH COMMAND TO RUN WHEN IT GETS STARTED)
+		VOLUME<PATH>  					  ( STORAGE LOCATION , IT TAKE SMALL MEMORY FROM HOST AND USE IT )
+		EXPOSE<PORTS>  					  ( ON WHICH SHOULD BE OPENED )
+		ENTRYPOINT<COMMAND><PARAMETER 1><PARAMETER 2>     ( IT OVERRIDE OTHER ELEMENTS)
+		LABEL<KEY>=<VALUE>				  ( TO ALLOW USE METE DATA IN IMAGE , TO INCUDE SPACES , OLD LABEL REPLACE )
+
+EXAMPLE:
+ mkdir project
+ nano main.py   ( print"docker executed")
+ nano dockerfile(
+  FROM ubuntu:latest
+  WORKDIR /app
+  ADD . /app
+  RUN apt update && apt install python -y
+  CMD python /app/main.py   ( as it will be started we put it here in /app )
+  LABEL color=red
+docker build -t <new name of image .>   ( it will build an image of docker file created  )
+
+
+
+If you want to remove an image from system  it is important to note there is no cntained running or stopped it should be destroyed
+
+docker image pull <name of image>       (it will pull the image form the docker hub if not present in pc)
+                  (ubuntu:latest)
+
+if you want to create container you should run the image by ( docker run <name of image> )
+
+
+docker file is config file which helps to docker enginer to create containers based on images
+
+Docker compose: To run multiple containers , to set time which container to start first( to work with data base and all etc)
+docker build -t <new name of image .>           ( it will build an image of dicker file created             )
+docker run hello-world			        ( it will run the hello world image if already in pc        )
+docker pull hello-world			        ( it will pull the image from docker hub.docker.com         )
+docker ps 				        ( it will display the number of containers running on the pc)
+docker ps -a				        ( it will display the containers already runned in the pc   )
+docker images OR docker image ls	        ( it will list the images in the pc                         )
+docker rm  <name of container or id>	        ( it will remove the container                              )
+docker rmi <name of image or id>	        ( it will remove the image                                  )
+docker run -it <name or id of image>     	( it will run the image and by writing -it the current terminal will become console of image runned and by writing )
+docker run -it -d <name of image>
+docker run hello-world			        ( it will run the hello world image if already in pc        )
+docker pull hello-world			        ( it will pull the image from docker hub.docker.com         )
+docker ps 				        ( it will display the number of containers running on the pc)
+docker ps -a				        ( it will display the containers already runned in the pc   )
+docker images OR docker image ls	        ( it will list the images in the pc                         )
+docker start <name or id of container>          ( it will run the container				    )
+docker restart <name or id of container>        ( it will restart					    )
+docker rm  <name of container or id>	        ( it will remove the container                              )
+docker rmi <name of image or id>	        ( it will remove the image                                  )
+docker kill <name of container or id>           ( it will kill the container , it is force stop		    )
+docker stop <id or name of container)		( it will stop the container)
+docker exec -it <name of container or id> bash  ( it will enter in the container specified , bash is terminal )
+service <name of service> status		( it willshow the status of server installed before )
+service <name of server> status			( it will run the server )
+docker commit <container name or id> <name of new image>         ( if you want to save settings of image if you want to stop container)
+[ docker tag <name of image already present> <username/new-name> ( it will create an image to send on docker hub)
+docker login:
+docker push <name of image> ]
+
+docker volume create <name of volume>
+docker volume ls      
+docker inspect < name of volume >
+docker volume rm <name of volume>
+docker volume prune  			                          ( it will kill all volumes )
+docker run -it -d --name <name of container of new container, any name> --mount source=<service(can be any name)>,target=</app> image-name       	  ( To attact volume to a container )
+docker run -it -d --name <name of container of new container, any name> --volume <name of volume, new name>:</app> <image-name in use already>   	  (/app is distination can change)
+docker run -it -d --name <name of container, new name> <image, present>   (To run the container )
+docker run -it -d <name of image> 				          (To run container     )
+docker container inspect <name of container>
+docker run -it -d --name <name of container> --mount type tmpfs,destination=<name like /app> ubuntu                                              	   (tmpfs mount (temporary data storage) works onky with linux)
+docker run -it -d --name <name of container of new container, any name> --mount source=<service(can be any name)>,target=</app>,readonly <name of image>   ( this is for readonly volume)  
+docker run -it <name or id of image>	( it will run the image and by writing -it the current terminal will become console of image runned )
+
+If you want to remove an image from system  it is important to note there is no container running or stopped it should be destroyed
+
+docker image pull <name of image>       (it will pull the image form the docker hub if not present in pc)
+                  (ubuntu:latest)
+
+if you want to create contained you should run the image by ( docker run <name of image> )
+
+docker file is config file which helps to docker enginer to create containers based on images
+
+Docker compose: To run multiple containers , to set time which container to start first( to work with data base and all etc)
+
+DOCKER NETWORKS: TO CREATE CONECTION BETWEEN TWO CONTAINEERS AND ALSO WITH SOFTWARE(IF THERE IS A SOFTWARE IN A CONTAINER WE CAN DEPLOY SOFTEARE IN THE NETWORK)
+
+1] BRIDGE  = COMMUNICATION BETWEEN 2 CONTAINER ( IF 3RD COME IT CANT COMMUNICATE )
+2] HOST    = DOCKER CONTAINERS THAT ARE CONNECTED TO HOST NETWORK BASICALLY SHARE THE NAESPACE WITH THEIR HOST, I.E  THE CONTAINERS SHARE THEIR IP ADDRESS OF THE HOST AND DONT HAVE ONE OF THEIR OWN.
+             (IF NO MACADDRESS , IP ADDRESS, THEN HOST NETWORK IS USED )
+3] OVERLAY = THE CONTAINER PRESENT IN DIFFERENT DOCKER HOSTS CAN COMMUNICATE WITH EACH OTHER USING OVERLAY NETWORK
+4] MACVLEN
+5] NONE    =  CANNOR CONNECT WITH ANY SERVICE OR SYSTEM FOR THE CONTAINER, USE TO ISOLATE THE CERTAIN CONTAINERS
+
+<---------------------------------BRIDGE NETWORK-------------------------------------------------->
+docker network create --driver bridge <name of network>    ( bridge is name of network )
+docker network ls
+docker network inspect <network name created>
+docker network rm <name or id of network>
+docker run -it -d --network <name of network already present> --name <name of container> <name of image(already present)>     ( to attach container with network       )
+docker network connect <name of network created> <container name>     							      ( to connect a container with network    )
+docker network disconnect <name of network to be disconned> <name of container to be disconneted>			      ( to disconnect a container with network )
+ping <id of container>	       												      ( to communicate with other container    )
+
+
+<-------------------------------HOST NETWORK-------------------------------------------------------->
+docker swarm init
+docker network create --driver overlay <name of network>   ( overlay is name of network )
+docker network ls
+docker network inspect <network name created>
+docker service create --name <name of service to be created> --network <nam of network, like any new name> --replicas <n.o of networks to be started like "2"> <name of image>     ( to create service )
+
+
+<-------------------------------------NONE NETWORK------------------------------------------------->
+docker run -it -d --network none --name <name of container> <name of image>                                    ( to create a container with none network , none is name of network)
+docker container inspect <name of container>                    					       ( if no ip address, no gateway , it is none network)
+
+<-------------------------------------------------------------------------------------------------->
+
+
+DOCKER COMPOSE = HELPS TO LAUNCH MULTIPLE CONTAINERS
+                 IF A BIG APPLICATION WHICH HAS BACK END AND FRONT , TOOLS IN docker-compose.yml file
+                 WRITE A FILE AND CONFIGURE THE  NEEDS 
+                 NEXT TO BUILD (ALL CONTAINERS WILL RUN)
+                 HELPS TO RUN MANY SERVICES ( can also launch microservices )
+
+THERE ARE TWO FORMATES  1] MAPPING= KEY VALUES( LIKE VERSION NUMBER '3' IS MAPS, ALLOCATING NAME TO IMAGE AND NUMBR TO PORTS
+                         2] LIST   =   5000:5000 TO EXPOSE IN MANY PORTS
+
+docker-compose.yml file( syntaxn below is used here)
+
+version:'3'							( it tells version )
+networks:
+  batman:							( put name of network in place of batman )
+    drivers:bridge						( type of network )
+services:							( it tells the n.o containers to  run, like web and database and i use images like exapmle nginx and mysql )
+  web:
+    image:'nginx:latest'					( name of image )
+    build:.							( can remove if no use  )
+    ports:
+      -"5000:5000"
+    networks:							( this is to tell service that i am using this network )
+      - batman	
+database:
+  image: 'mysql'    					        ( name of image )( it is another service)
+  networks:
+    -batman
+
+
+docker-compose up                                                   ( To build the docker file )
+docker-compose down                                                 ( It will shut dowm everything, do it from where the docker file is present )
+
+NOTE = USE sudo(if using sudo terminal, write 'sudo su to' exit) at the beginning of codes if found error
+
+
+<----------------------------------------HOW TO DEPLOY-------------------------------------------------->
+docker-compose up                                                   ( To build the docker file )
+docker-compose down                                                 ( It will shut dowm everything, do it from where the docker file is present )
+
+<---------------------------------------DOCKER SWARN----------------------------------------------------->
+
+
+
+<---------------------------------CONTINOUS INTEGRATION-------------------------------------------------->
+IT IS A PHASE OF DEVOPS, WE INTEGRATE AS MANY AS PARTS WE HAVE,WE TAKE ALL PARTS AND ADD AND WE ALSO CONTROL
+
+ALL DEV WRITE CODE AND PUSH , AND SOURCE CODE MANAGER  KEEP THE CODE AND SEND TO TESTER AND WHERE HE TESTS IF HE THINKS IT IS CODE GOOD THEN HE SEND FOR DEPLOYEMENT, 
+EVERYTHINK IS MANUAL HERE. THERE ARE CHANGES OF ERROR IN THIS PROCESSES JUST TO MINIMIZE THIS ERRORS WE USE CONTINOIUS INTEGRATION.
+THERE ISNO HUMAN INVOLMENENT HERE TO AVOID ERRORS
+
+we can put all automation parts like codes, WE CAN WRITE SCRIPTS TO MAKE AUTOMATE.
