@@ -47,7 +47,12 @@ if you want to create container you should run the image by ( docker run <name o
 
 docker file is config file which helps to docker enginer to create containers based on images
 
+
+
 Docker compose: To run multiple containers , to set time which container to start first( to work with data base and all etc)
+
+systemctl start docker
+syatemctl status docker
 docker build -t <new name of image .>           ( it will build an image of dicker file created             )
 docker run hello-world			        ( it will run the hello world image if already in pc        )
 docker pull hello-world			        ( it will pull the image from docker hub.docker.com         )
