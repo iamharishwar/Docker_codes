@@ -52,7 +52,7 @@ docker file is config file which helps to docker enginer to create containers ba
 Docker compose: To run multiple containers , to set time which container to start first( to work with data base and all etc)
 
 systemctl start docker
-syatemctl status docker
+systemctl status docker
 docker build -t <new name of image .>           ( it will build an image of docker file created             )
 docker run hello-world			        ( it will run the hello world image if already in pc        )
 docker pull hello-world			        ( it will pull the image from docker hub.docker.com         )
