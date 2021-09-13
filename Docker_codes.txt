@@ -53,7 +53,7 @@ Docker compose: To run multiple containers , to set time which container to star
 
 systemctl start docker
 syatemctl status docker
-docker build -t <new name of image .>           ( it will build an image of dicker file created             )
+docker build -t <new name of image .>           ( it will build an image of docker file created             )
 docker run hello-world			        ( it will run the hello world image if already in pc        )
 docker pull hello-world			        ( it will pull the image from docker hub.docker.com         )
 docker ps 				        ( it will display the number of containers running on the pc)
