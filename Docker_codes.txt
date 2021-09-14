@@ -63,6 +63,7 @@ docker rm  <name of container or id>	        ( it will remove the container     
 docker rmi <name of image or id>	        ( it will remove the image                                  )
 docker run -it <name or id of image>     	( it will run the image and by writing -it the current terminal will become console of image runned and by writing )
 docker run -it -d <name of image>
+docker run -it -d --name <give name to container> <name of image present>        ( it will run ckintainer with the name specified )
 docker run hello-world			        ( it will run the hello world image if already in pc        )
 docker pull hello-world			        ( it will pull the image from docker hub.docker.com         )
 docker ps 				        ( it will display the number of containers running on the pc)
